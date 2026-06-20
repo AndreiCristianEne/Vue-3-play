@@ -12,7 +12,7 @@ const props = defineProps({
 });
 
 onMounted(() => {
-  debugger;
+  // debugger;
   console.info(props.username);
   console.log('Component mounted with props:', props);
 });

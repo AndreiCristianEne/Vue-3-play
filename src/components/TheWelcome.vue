@@ -16,19 +16,20 @@ const posts = reactive([
     post: 'This is a nice post'
   }
 ]);
+
+onMounted(() => {
+  // debugger;
+  console.log('TheWelcome component has been mounted!');
+});
 </script>
 
 <template>
-  <SocialPost 
-    :username="posts[0].username"
-    :userId="posts[0].userId"
-    :avatarSrc="posts[0].avatarSrc"
-    :post="posts[0].post"
-  />
-  <SocialPost 
-    :username="posts[1].username"
-    :userId="posts[1].userId"
-    :avatarSrc="posts[1].avatarSrc"
-    :post="posts[1].post"
+  <SocialPost
+    v-for="(post, index) in posts"
+    :key="index"
+    :username="post.username"
+    :userId="post.userId"
+    :avatarSrc="post.avatarSrc"
+    :post="post.post"
   />
 </template>
