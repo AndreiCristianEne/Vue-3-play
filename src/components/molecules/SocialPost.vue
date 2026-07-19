@@ -7,7 +7,7 @@
       <img class="avatar" :src="avatarSrc" />
       <div class="name">{{ username }}</div>
       <div class="userId">{{ userId }}</div>
-      <IconDelete />
+      <IconDelete class="delete-icon" @click="onClickDeletePost"/>
     </div>
     <div class="post" v-text="post"></div>
     <SocialPostComments
@@ -37,6 +37,7 @@ import IconHeart from '../icons/IconHeart.vue';
 import IconCommunity from '../icons/IconCommunity.vue';
 import IconDelete from '../icons/IconDelete.vue';
 
+const emit = defineEmits(['deletePost']);
 const showComments = ref(false); 
 const onShowCommentClick = () => { 
   console.log("Showing comments");
@@ -68,6 +69,12 @@ const interactions = computed( ()=> {
 onMounted( () => {
   console.log(props.username);
 });
+
+const onClickDeletePost = () => { 
+  debugger;
+  console.log("In SocialPost.vue (child). Deleting post ", props.userId);
+  emit('deletePost', props.userId);
+}
 </script>
 
 <style lang="scss">
@@ -88,7 +95,11 @@ onMounted( () => {
   .name {
     font-weight: bold;
     margin-right: 8px;
-    color: white;
+    //color: white;
+  }
+  .delete-icon {
+    margin-left: 10px;
+    cursor: pointer;
   }
   .interactions {
     display: flex;
